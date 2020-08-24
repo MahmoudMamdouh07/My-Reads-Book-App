@@ -10,28 +10,21 @@ const controls = [
   },
   { name: "Read", shelf: "read" },
 ];
+
 class ListBooks extends Component {
-  state = {
-    query: "",
-  };
-  handleSearch = (event) => {
-    event.preventDefault();
-    this.setState({ query: event.target.value });
-  };
   render() {
-    const { books, shelfUpdate } = this.props;
-    const { query } = this.state;
-    function getAuthor(author) {
+    const { Books, searchQuery, shelfUpdate } = this.props;
+    /*  function getAuthor(author) {
       return author.toLowerCase().includes(query.toLowerCase());
-    }
-    const showingBooks =
-      query === ""
+    }*/
+    const showingBooks = Books;
+    /*   query === ""
         ? books
-        : books.filter(
+        : searchQuery.filter(
             (book) =>
               book.title.toLowerCase().includes(query.toLowerCase()) ||
               book.authors.some(getAuthor)
-          );
+          );*/
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -39,26 +32,27 @@ class ListBooks extends Component {
             Close
           </Link>
           <div className="search-books-input-wrapper">
-            <input
+            <input // not adding value property setted to {query} in input state leads to faster and better performance
               type="text"
-              value={query}
-              onChange={this.handleSearch}
+              onChange={(event) => {
+                searchQuery(event.target.value);
+              }}
               placeholder="Search by title or author"
             />
           </div>
         </div>
         <div className="search-books-results">
-          {showingBooks.length !== books.length ? (
-            <ol className="books-grid">
-              {showingBooks.map((book) => (
-                <Book
-                  controls={controls}
-                  book={book}
-                  shelfUpdate={shelfUpdate}
-                />
-              ))}
-            </ol>
-          ) : null}
+          <ol className="books-grid">
+            {showingBooks && showingBooks.length > 0
+              ? showingBooks.map((book) => (
+                  <Book
+                    controls={controls}
+                    book={book}
+                    shelfUpdate={shelfUpdate}
+                  />
+                ))
+              : null}
+          </ol>
         </div>
       </div>
     );

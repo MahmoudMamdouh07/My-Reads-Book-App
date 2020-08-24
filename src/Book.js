@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import Selections from "./Selections";
+import missing from "./icons/missing.png";
 
 class Book extends Component {
   render() {
     const { controls, book, shelfUpdate } = this.props;
+    const image =
+      book.imageLinks && book.imageLinks.thumbnail
+        ? book.imageLinks.thumbnail
+        : missing;
     return (
       <div className="book">
         <div className="book-top">
@@ -12,7 +17,7 @@ class Book extends Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${book.imageLinks.smallThumbnail})`,
+              backgroundImage: `url(${image})`,
             }}
           />
           <Selections

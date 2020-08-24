@@ -7,7 +7,7 @@ class Selections extends Component {
       <div className="book-shelf-changer">
         <select
           onChange={(event) => shelfUpdate(book, event.target.value)}
-          value={book.shelf}
+          value={book.shelf ? book.shelf : "none"}
         >
           <option value="move" disabled>
             Move to...
