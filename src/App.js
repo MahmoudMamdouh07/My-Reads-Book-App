@@ -57,7 +57,8 @@ class BooksApp extends React.Component {
                 <ListBooks
                   shelfUpdate={this.shelfUpdate}
                   searchQuery={this.searchQuery}
-                  Books={this.state.searchableBooks}
+                  searchableBooks={this.state.searchableBooks}
+                  books={this.state.books}
                 />
               )}
             />
@@ -75,6 +76,7 @@ class BooksApp extends React.Component {
                       shelfUpdate={this.shelfUpdate}
                     />
                   </div>
+                  {(this.state.searchableBooks = [])}
                   <div className="open-search">
                     <Link id="open-search-link" to="/search">
                       Add a book

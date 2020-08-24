@@ -26,6 +26,7 @@ class Shelf extends Component {
                     controls={controls}
                     book={book}
                     shelfUpdate={shelfUpdate}
+                    books={books}
                   />
                 </li>
               ))}

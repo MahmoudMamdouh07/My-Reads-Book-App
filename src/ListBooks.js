@@ -13,11 +13,10 @@ const controls = [
 
 class ListBooks extends Component {
   render() {
-    const { Books, searchQuery, shelfUpdate } = this.props;
+    const { books, searchableBooks, searchQuery, shelfUpdate } = this.props;
     /*  function getAuthor(author) {
       return author.toLowerCase().includes(query.toLowerCase());
     }*/
-    const showingBooks = Books;
     /*   query === ""
         ? books
         : searchQuery.filter(
@@ -43,12 +42,13 @@ class ListBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {showingBooks && showingBooks.length > 0
-              ? showingBooks.map((book) => (
+            {searchableBooks && searchableBooks.length > 0
+              ? searchableBooks.map((book) => (
                   <Book
                     controls={controls}
                     book={book}
                     shelfUpdate={shelfUpdate}
+                    books={books}
                   />
                 ))
               : null}

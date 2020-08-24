@@ -4,7 +4,7 @@ import missing from "./icons/missing.png";
 
 class Book extends Component {
   render() {
-    const { controls, book, shelfUpdate } = this.props;
+    const { books, controls, book, shelfUpdate } = this.props;
     const image =
       book.imageLinks && book.imageLinks.thumbnail
         ? book.imageLinks.thumbnail
@@ -24,6 +24,7 @@ class Book extends Component {
             book={book}
             controls={controls}
             shelfUpdate={shelfUpdate}
+            books={books}
           />
         </div>
         <div className="book-title">{book.title}</div>
